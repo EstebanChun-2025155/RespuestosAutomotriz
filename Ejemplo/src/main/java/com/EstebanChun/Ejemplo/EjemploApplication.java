@@ -1,4 +1,4 @@
-package com.example.Ejemplo;
+package com.EstebanChun.Ejemplo;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -13,6 +13,6 @@ public class EjemploApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		System.out.println("Hola mundo");
+		System.out.println("Test API");
 	}
 }
