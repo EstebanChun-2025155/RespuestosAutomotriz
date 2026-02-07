@@ -35,14 +35,12 @@ public class EmpleadoServiceImplements implements EmpleadoService  {
                 throw new IllegalArgumentException("Datos del empleado obligatorios");
             }
 
+            if (!(empleado.getEmailEmpleado().contains("@gmail.com") ||
+                    empleado.getEmailEmpleado().contains("@yahoo.com") ||
+                    empleado.getEmailEmpleado().contains("@outlook.com") ||
+                    empleado.getEmailEmpleado().contains("@hotmail.com"))) {
 
-            if (empleadoRepository.existsByNombreEmpleadoAndApellidoEmpeladoAndPuestoEmpleadoAndEmailEmpleado(
-                    empleado.getNombreEmpleado(),
-                    empleado.getApellidoEmpelado(),
-                    empleado.getPuestoEmpleado(),
-                    empleado.getEmailEmpleado())) {
-
-                throw new RuntimeException("Ya existe un empleado con estos datos");
+                throw new IllegalStateException("El email solo es valido con los dominios @gmail.com,@yahoo.com, @outlookk, @hotmail.com");
             }
 
             if (empleadoRepository.existsByNombreEmpleadoAndApellidoEmpeladoAndPuestoEmpleadoAndEmailEmpleado(
