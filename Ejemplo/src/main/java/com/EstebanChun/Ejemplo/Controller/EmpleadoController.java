@@ -31,7 +31,7 @@ public class EmpleadoController {
         try {
             Empleado createdEmpleado = empleadoService.saveEmpleado(empleado);
             return new ResponseEntity<>(createdEmpleado, HttpStatus.CREATED);
-        } catch (IllegalArgumentException e) {
+        } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }

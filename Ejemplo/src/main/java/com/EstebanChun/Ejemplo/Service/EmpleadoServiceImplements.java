@@ -26,7 +26,37 @@ public class EmpleadoServiceImplements implements EmpleadoService  {
 
     @Override
     public Empleado saveEmpleado(Empleado empleado) throws RuntimeException {
-        return empleadoRepository.save(empleado);
+        try{
+            if (empleado == null
+                    || empleado.getNombreEmpleado() == null || empleado.getNombreEmpleado().isBlank()
+                    || empleado.getApellidoEmpelado() == null || empleado.getApellidoEmpelado().isBlank()
+                    || empleado.getPuestoEmpleado() == null || empleado.getPuestoEmpleado().isBlank()
+                    || empleado.getEmailEmpleado() == null || empleado.getEmailEmpleado().isBlank()) {
+                throw new IllegalArgumentException("Datos del empleado obligatorios");
+            }
+
+
+            if (empleadoRepository.existsByNombreEmpleadoAndApellidoEmpeladoAndPuestoEmpleadoAndEmailEmpleado(
+                    empleado.getNombreEmpleado(),
+                    empleado.getApellidoEmpelado(),
+                    empleado.getPuestoEmpleado(),
+                    empleado.getEmailEmpleado())) {
+
+                throw new RuntimeException("Ya existe un empleado con estos datos");
+            }
+
+            if (empleadoRepository.existsByNombreEmpleadoAndApellidoEmpeladoAndPuestoEmpleadoAndEmailEmpleado(
+                    empleado.getNombreEmpleado(),
+                    empleado.getApellidoEmpelado(),
+                    empleado.getPuestoEmpleado(),
+                    empleado.getEmailEmpleado())){
+
+                throw  new RuntimeException("Ya existe un empleado con estos datos");
+            }
+            return empleadoRepository.save(empleado);
+        }catch (Exception e){
+            throw new RuntimeException(e.getMessage());
+        }
     }
 
 
