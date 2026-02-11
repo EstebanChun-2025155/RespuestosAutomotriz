@@ -46,54 +46,6 @@ references Empleados(id_empleado) on delete cascade,
 references Repuestos(id_repuesto) on delete cascade
 );
 
-Insert into Proveedores (nombre_proveedor, telefono_proveedor, direccion, email_proveedor) values
-('Proveedor Alfa S.A.', 22334411, 'Zona 1, Ciudad de Guatemala', 'contacto@proveedoralfa.com'),
-('Repuestos Centro', 22998877, 'Calzada Roosevelt 10-55, Zona 7', 'ventas@repuestoscentro.com'),
-('MotoPartes GT', 24001122, 'Avenida Petapa 23-10, Zona 12', 'info@motopartesgt.com'),
-('AutoSuministros Maya', 23335566, 'Boulevard Los Próceres 5-20, Zona 10', 'servicio@autosuministrosmaya.com'),
-('Distribuidora El Tornillo', 24667788, 'Ruta al Atlántico Km 6.5, Zona 17', 'pedidos@eltornillo.com'),
-('Partes y Más', 22112233, '6a Avenida 12-45, Zona 9', 'atencion@partesymas.com'),
-('Súper Repuestos', 24889900, 'Anillo Periférico 18-90, Zona 11', 'super@superrepuestos.com'),
-('LubriMotor Supply', 22776655, 'Carretera a El Salvador Km 14, Fraijanes', 'ventas@lubrimotor.com'),
-('ElectroAuto Pro', 23114455, 'Zona 4, Mixco, Guatemala', 'soporte@electroautopro.com'),
-('Importadora La Bodega', 23990011, 'Zona 3, Villa Nueva, Guatemala', 'importaciones@labodega.com');
-
-Insert into Empleados (nombre_empleado, apellido_empleado, puesto_empleado, email_empleado) values
-('Carlos', 'Méndez', 'Vendedor', 'carlos.mendez@empresa.com'),
-('Ana', 'López', 'Cajero', 'ana.lopez@empresa.com'),
-('Jorge', 'Pérez', 'Vendedor', 'jorge.perez@empresa.com'),
-('María', 'García', 'Supervisor', 'maria.garcia@empresa.com'),
-('Luis', 'Ramírez', 'Bodega', 'luis.ramirez@empresa.com'),
-('Sofía', 'Castillo', 'Vendedor', 'sofia.castillo@empresa.com'),
-('Diego', 'Hernández', 'Cajero', 'diego.hernandez@empresa.com'),
-('Paola', 'Morales', 'Bodega', 'paola.morales@empresa.com'),
-('Ricardo', 'Vásquez', 'Supervisor', 'ricardo.vasquez@empresa.com'),
-('Elena', 'Chávez', 'Vendedor', 'elena.chavez@empresa.com');
-
-Insert into Repuestos (nombre_repuesto, categoria_repuesto, precio_compra, precio_venta, id_proveedor) values
-('Filtro de aceite', 'Filtros', 25.00, 45.00, 1),
-('Bujía estándar', 'Encendido', 12.00, 22.00, 2),
-('Pastillas de freno delanteras', 'Frenos', 85.00, 130.00, 3),
-('Correa de tiempo', 'Motor', 120.00, 180.00, 4),
-('Amortiguador delantero', 'Suspensión', 210.00, 320.00, 5),
-('Batería 12V 60Ah', 'Eléctrico', 350.00, 480.00, 6),
-('Aceite 10W-30 (1L)', 'Lubricantes', 35.00, 55.00, 7),
-('Bombilla H4', 'Iluminación', 18.00, 30.00, 8),
-('Sensor O2', 'Sensores', 260.00, 390.00, 9),
-('Radiador compacto', 'Enfriamiento', 420.00, 600.00, 10);
-
-Insert into Ventas (fecha_venta, cantidad, total, id_empleado, id_repuesto) values
-('2026-01-10', 2, 90.00, 1, 1),   
-('2026-01-12', 4, 88.00, 2, 2),   
-('2026-01-15', 1, 130.00, 3, 3),  
-('2026-01-18', 1, 180.00, 4, 4),  
-('2026-01-20', 2, 640.00, 5, 5),  
-('2026-01-22', 1, 480.00, 6, 6),  
-('2026-01-25', 6, 330.00, 7, 7),  
-('2026-01-27', 3, 90.00, 8, 8),   
-('2026-01-30', 1, 390.00, 9, 9),  
-('2026-02-02', 1, 600.00, 10, 10);
-
 
 -- PROCEDIMIENTOS ALMACENADOS -- 
 
@@ -277,5 +229,49 @@ Delimiter $$
 		select row_count() as filas_afectadas; 
     end $$
 Delimiter ;
+
+call sp_proveedores_create('Distribuidora López', 80955512, 'Av. Independencia 123, Santo Domingo', 'distribuidoralp@gmail.com');
+call sp_proveedores_create('Suministros García', 80955523, 'Calle Duarte 45, Santiago', 'suministrosgarcia@yahoo.com');
+call sp_proveedores_create('Comercial Martínez', 80955534, 'Av. Las Américas 789, Santo Domingo Este', 'comercialmartinez@hotmail.com');
+call sp_proveedores_create('Importadora Rodríguez', 80955545, 'Calle Mella 210, La Vega', 'importadorarodriguez@outlook.com');
+call sp_proveedores_create('Proveedora Hernández', 80955556, 'Av. Constitución 56, San Cristóbal', 'proveedorahernandez@gmail.com');
+call sp_proveedores_create('Distribuciones Santana', 80955567, 'Calle Colón 88, Puerto Plata', 'distribucionessantana@yahoo.com');
+call sp_proveedores_create('Almacenes Jiménez', 80955578, 'Av. Circunvalación 300, Santiago', 'almacenesjimenez@hotmail.com');
+call sp_proveedores_create('Servicios Globales SRL', 80955589, 'Calle Principal 12, Higüey', 'serviciosglobales@outlook.com');
+call sp_proveedores_create('Comercial Dominicana', 80955590, 'Av. Central 145, Baní', 'comercialdominicana@gmail.com');
+call sp_proveedores_create('Distribuidora Nacional', 80955501, 'Calle Comercio 67, San Pedro de Macorís', 'distribuidoranacional@yahoo.com');
+
+call sp_empleados_create('Carlos', 'Pérez', 'Administrador', 'carlosperez@gmail.com');
+call sp_empleados_create('María', 'Gómez', 'Contador', 'mariagomez@yahoo.com');
+call sp_empleados_create('Luis', 'Rodríguez', 'Vendedor', 'luisrodriguez@hotmail.com');
+call sp_empleados_create('Ana', 'Martínez', 'Supervisor', 'anamartinez@outlook.com');
+call sp_empleados_create('José', 'Hernández', 'Gerente', 'josehernandez@gmail.com');
+call sp_empleados_create('Laura', 'Ramírez', 'Asistente', 'lauraramirez@yahoo.com');
+call sp_empleados_create('Miguel', 'Torres', 'Técnico', 'migueltorres@hotmail.com');
+call sp_empleados_create('Sofía', 'Castillo', 'Recepcionista', 'sofiacastillo@outlook.com');
+call sp_empleados_create('Pedro', 'Morales', 'Almacén', 'pedromorales@gmail.com');
+call sp_empleados_create('Elena', 'Vargas', 'RecursosHumanos', 'elenavargas@yahoo.com');
+
+call sp_repuestos_create('Filtro de Aceite', 'Motor', 250.00, 400.00, 1);
+call sp_repuestos_create('Pastillas de Freno', 'Frenos', 800.00, 1200.00, 2);
+call sp_repuestos_create('Batería 12V', 'Eléctrico', 3500.00, 4500.00, 3);
+call sp_repuestos_create('Amortiguador Delantero', 'Suspensión', 1800.00, 2500.00, 4);
+call sp_repuestos_create('Radiador', 'Refrigeración', 4200.00, 5500.00, 5);
+call sp_repuestos_create('Bujías', 'Motor', 150.00, 300.00, 6);
+call sp_repuestos_create('Alternador', 'Eléctrico', 5000.00, 6500.00, 7);
+call sp_repuestos_create('Disco de Freno', 'Frenos', 1200.00, 1800.00, 8);
+call sp_repuestos_create('Bomba de Agua', 'Refrigeración', 2200.00, 3200.00, 9);
+call sp_repuestos_create('Filtro de Aire', 'Motor', 300.00, 500.00, 10);
+
+call sp_ventas_create('2026-01-05', 3, 450.00, 1, 2);
+call sp_ventas_create('2026-01-06', 1, 150.00, 2, 3);
+call sp_ventas_create('2026-01-07', 5, 1250.50, 3, 1);
+call sp_ventas_create('2026-01-08', 2, 300.00, 1, 4);
+call sp_ventas_create('2026-01-09', 4, 800.75, 4, 2);
+call sp_ventas_create('2026-01-10', 6, 2100.00, 2, 5);
+call sp_ventas_create('2026-01-11', 2, 520.40, 3, 3);
+call sp_ventas_create('2026-01-12', 7, 3150.00, 5, 1);
+call sp_ventas_create('2026-01-13', 1, 95.99, 4, 6);
+call sp_ventas_create('2026-01-14', 3, 675.30, 1, 7);
 
 
