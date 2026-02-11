@@ -8,7 +8,7 @@ import java.util.List;
 @Service
 public interface RepuestoService {
     List<Repuesto> getAllRepuesto();
-    Repuesto getRepuesto(Integer id);
+    Repuesto getRepuestoById(Integer id);
     Repuesto saveRepuesto(Repuesto repuesto) throws RuntimeException;
     Repuesto updateRepuesto(Integer id, Repuesto repuesto);
     void deleteRepuesto(Integer id );

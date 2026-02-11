@@ -42,7 +42,7 @@ public class ProveedorServiceImplements implements ProveedorService {
                     proveedor.getNombreProveedor(),
                     proveedor.getDireccion(),
                     proveedor.getEmailProveedor())){
-                throw new RuntimeException("Ya existe un proveedort con esos datos");
+                throw new RuntimeException("Ya existe un proveedor con esos datos");
             }
             return proveedorRepository.save(proveedor);
         }catch (Exception e) {
