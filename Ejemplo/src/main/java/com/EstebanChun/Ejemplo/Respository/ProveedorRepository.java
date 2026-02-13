@@ -6,9 +6,10 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProveedorRepository extends JpaRepository<Proveedor, Integer> {
-    boolean existsByNombreProveedorAndDireccionAndEmailProveedor(
+    boolean existsByNombreProveedorAndTelefonoAndDireccionAndEmailProveedor(
             String nombreProveedor,
-            String Direccion,
-            String EmailProveedor
+            Integer telefono,
+            String direccion,
+            String emailProveedor
     );
 }
