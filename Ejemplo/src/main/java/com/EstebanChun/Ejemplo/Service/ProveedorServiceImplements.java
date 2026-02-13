@@ -27,9 +27,10 @@ public class ProveedorServiceImplements implements ProveedorService {
         try{
             if(proveedor == null
                 || proveedor.getNombreProveedor() == null || proveedor.getNombreProveedor().isBlank()
-                || proveedor.getEmailProveedor() == null || proveedor.getEmailProveedor().isBlank()
-                || proveedor.getDireccion() == null || proveedor.getDireccion().isBlank()){
-                throw new IllegalArgumentException("Los espacios deben estar completos");
+                || proveedor.getTelefonoProveedor() == null || proveedor.getTelefonoProveedor() <-0
+                || proveedor.getDireccion() == null || proveedor.getDireccion().isBlank()
+                || proveedor.getEmailProveedor() == null || proveedor.getEmailProveedor().isBlank()){
+                throw new IllegalArgumentException("Los espacios deben estar llenos ");
             }
 
             if (!(proveedor.getEmailProveedor().contains("@gmail.com") ||
@@ -38,8 +39,9 @@ public class ProveedorServiceImplements implements ProveedorService {
                     proveedor.getEmailProveedor().contains("@yahoo.com"))){
                 throw new IllegalStateException ("El email solo es valido bajo los campos de @gmail.com, @hotmail.com, @outlook.com, @yahoo.com");
             }
-            if (proveedorRepository.existsByNombreProveedorAndDireccionAndEmailProveedor(
+            if (proveedorRepository.existsByNombreProveedorAndTelefonoAndDireccionAndEmailProveedor(
                     proveedor.getNombreProveedor(),
+                    proveedor.getTelefonoProveedor(),
                     proveedor.getDireccion(),
                     proveedor.getEmailProveedor())){
                 throw new RuntimeException("Ya existe un proveedor con esos datos");
