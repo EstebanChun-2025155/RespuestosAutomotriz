@@ -24,12 +24,39 @@ public class RepuestoServiceImplements implements RepuestoService {
 
     @Override
     public Repuesto saveRepuesto(Repuesto repuesto) throws RuntimeException {
-        return repuestoRepository.save(repuesto);
+        try {
+            if (repuesto == null
+                || repuesto.getNombreRepuesto() == null || repuesto.getNombreRepuesto().isBlank()
+                || repuesto.getCategoriaRepuesto() == null || repuesto.getCategoriaRepuesto().isBlank()
+                || repuesto.getPrecioCompra() == null || repuesto.getPrecioCompra() <-0
+                || repuesto.getPrecioVenta() == null || repuesto.getPrecioVenta() <-0
+                || repuesto.getIdProveedor() == null || repuesto.getIdProveedor() <-0){
+
+                throw new RuntimeException("Lo campos deben de estar llenos, asi como el precio de venta/compra y el id deben de ser mayores a 0");
+            }
+            if (repuestoRepository.existsByNombreRepuestAndCategoriaRepuestoAndPrecioCompraAndPrecioVentaAndIdProveedor(
+                    repuesto.getNombreRepuesto(),
+                    repuesto.getCategoriaRepuesto(),
+                    repuesto.getPrecioCompra(),
+                    repuesto.getPrecioVenta(),
+                    repuesto.getIdProveedor())){
+                throw new IllegalStateException("Ya existe un repuesto con esos datos");
+            }
+            return repuestoRepository.save(repuesto);
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
     }
 
     @Override
     public Repuesto updateRepuesto(Integer id, Repuesto repuesto) {
         Repuesto existingRepuesto = repuestoRepository.findById(id).orElseThrow(() -> new RuntimeException("El Repuesto no existe"));
+
+        existingRepuesto.setNombreRepuesto(repuesto.getNombreRepuesto());
+        existingRepuesto.setCategoriaRepuesto(repuesto.getCategoriaRepuesto());
+        existingRepuesto.setPrecioCompra(repuesto.getPrecioCompra());
+        existingRepuesto.setPrecioVenta(repuesto.getPrecioVenta());
+
         return  repuestoRepository.save(existingRepuesto);
     }
 
