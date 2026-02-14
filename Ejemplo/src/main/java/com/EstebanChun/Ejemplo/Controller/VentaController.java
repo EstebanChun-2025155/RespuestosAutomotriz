@@ -15,7 +15,7 @@ import java.util.List;
 public class VentaController {
     private final VentaService ventaService;
 
-    public VentaController(VentaService ventaService, RepuestoService repuestoService) {
+    public VentaController(VentaService ventaService) {
         this.ventaService = ventaService;
     }
 
@@ -24,7 +24,7 @@ public class VentaController {
 
 
     @PostMapping()
-    public ResponseEntity<Object> createVenta(@Valid @RequestBody Venta venta) {
+    public ResponseEntity<Object> createVenta(@RequestBody Venta venta) {
         try {
             Venta createVenta = ventaService.saveVenta(venta);
             return  new ResponseEntity<>(createVenta, HttpStatus.CREATED);
@@ -33,7 +33,7 @@ public class VentaController {
         }
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteVenta(@PathVariable Integer id){
         try {
             if(ventaService.getVentaById(id) == null) {
@@ -46,7 +46,7 @@ public class VentaController {
         }
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     public ResponseEntity<Object> updateVenta(@PathVariable Integer id, @RequestBody Venta venta){
         try {
             Venta actualizado = ventaService.updateVenta(id, venta);

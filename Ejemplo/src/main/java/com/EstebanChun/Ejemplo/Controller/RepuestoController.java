@@ -30,7 +30,7 @@ public class RepuestoController {
         }
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteRepuesto(@PathVariable Integer id){
         try {
             if(repuestoService.getRepuestoById(id) == null){
@@ -44,7 +44,7 @@ public class RepuestoController {
         }
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     public ResponseEntity<Object> updateRepuesto(@PathVariable Integer id, @RequestBody Repuesto repuesto){
         try {
             Repuesto actualizado = repuestoService.updateRepuesto(id, repuesto);
