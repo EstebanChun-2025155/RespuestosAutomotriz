@@ -5,10 +5,10 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "Venta")
+@Table(name = "Ventas")
 public class Venta {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     @Column(name = "id_venta")
     private Integer idVenta;
@@ -17,10 +17,10 @@ public class Venta {
     private Date fechaVenta;
 
     @Column(name = "cantidad")
-    private Integer Cantidad;
+    private Integer cantidad;
 
     @Column(name = "total")
-    private Double Total;
+    private Double total;
 
     @Column(name = "id_empleado")
     private Integer idEmpleado;
@@ -45,19 +45,19 @@ public class Venta {
     }
 
     public Integer getCantidad() {
-        return Cantidad;
+        return cantidad;
     }
 
     public void setCantidad(Integer cantidad) {
-        Cantidad = cantidad;
+        this.cantidad = cantidad;
     }
 
     public Double getTotal() {
-        return Total;
+        return total;
     }
 
     public void setTotal(Double total) {
-        Total = total;
+        this.total = total;
     }
 
     public Integer getIdEmpleado() {
